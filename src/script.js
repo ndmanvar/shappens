@@ -654,7 +654,8 @@ function endGame() {
   fartNoise.play()
   gameover = true
   characterBody.sleep()
-  myUndefinedFunction();
+  // myUndefinedFunction();
+  throwRandomError();
   setTimeout(function () {
     resetGame()
     startGame()
@@ -728,4 +729,32 @@ function followPlayer(now) {
       Math.round(characterBody.position.z)
     ).padStart(3, '0')
   }
+}
+
+const notAFunctionError = () => {
+  const someArray = [{ func: function () {}}];
+  someArray[1].func();
+}
+const referenceError = () => {
+  throw new ReferenceError('undefinedVariable is not defined')
+};
+const syntaxError = () => eval('foo bar');
+const rangeError = () => {
+  throw new RangeError('Parameter must be between 1 and 100');
+}
+const unhandledError = () => {
+  throw new UnhandledException('unhandled error')
+}
+
+const randomErrors = [
+  notAFunctionError,
+  referenceError,
+  syntaxError,
+  rangeError,
+  unhandledError
+]
+
+const throwRandomError = () => {
+  const randomNum = parseInt(Math.random()*randomErrors.length)
+  randomErrors[randomNum]()
 }
