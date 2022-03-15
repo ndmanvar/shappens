@@ -755,6 +755,7 @@ const randomErrors = [
 ]
 
 const throwRandomError = () => {
+  alert('Uh oh! - Error: Something unexpected happened')
   const randomNum = parseInt(Math.random()*randomErrors.length)
   randomErrors[randomNum]()
 }
