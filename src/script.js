@@ -731,13 +731,13 @@ function followPlayer(now) {
   }
 }
 
+const referenceError = () => {
+  throw new ReferenceError('undefinedVariable is not defined')
+};
 const notAFunctionError = () => {
   const someArray = [{ func: function () {}}];
   someArray[1].func();
 }
-const referenceError = () => {
-  throw new ReferenceError('undefinedVariable is not defined')
-};
 const syntaxError = () => eval('foo bar');
 const rangeError = () => {
   throw new RangeError('Parameter must be between 1 and 100');
